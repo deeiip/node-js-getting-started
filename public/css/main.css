@@ -35,9 +35,10 @@
 }
 .frame{
     background:#e0e0de;
-    height:450px;
+    height:550px;
     overflow:hidden;
     padding:0;
+    overflow-y:scroll;
 }
 .frame > div:last-of-type{
     position:absolute;bottom:5px;width:100%;display:flex;
@@ -88,4 +89,4 @@ input:focus{
 }
 :-moz-placeholder { /* Firefox 18- */
     color: #d4d4d4;
-}   
+}

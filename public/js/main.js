@@ -1,8 +1,21 @@
 var me = {};
-me.avatar = "https://lh6.googleusercontent.com/-lr2nyjhhjXw/AAAAAAAAAAI/AAAAAAAARmE/MdtfUmC0M4s/photo.jpg?sz=48";
+me.avatar = "http://i.imgur.com/zw4yU8P.jpg?1";
 
 var you = {};
-you.avatar = "https://a11.t26.net/taringa/avatares/9/1/2/F/7/8/Demon_King1/48x48_5C5.jpg";
+you.avatar = "http://i.imgur.com/ArSUgrw.jpg";
+
+
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
+
 
 function formatAMPM(date) {
     var hours = date.getHours();
@@ -26,7 +39,7 @@ function insertChat(who, text, time = 0){
                         '<div class="msj macro">' +
                         '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
                             '<div class="text text-l">' +
-                                '<p>'+ text +'</p>' +
+                                '<p><b>Pablo</b></p><p>'+ text +'</p>' +
                                 '<p><small>'+date+'</small></p>' +
                             '</div>' +
                         '</div>' +
@@ -35,7 +48,7 @@ function insertChat(who, text, time = 0){
         control = '<li style="width:100%;">' +
                         '<div class="msj-rta macro">' +
                             '<div class="text text-r">' +
-                                '<p>'+text+'</p>' +
+                                '<p><b>Javier Pena</b></p><p>'+text+'</p>' +
                                 '<p><small>'+date+'</small></p>' +
                             '</div>' +
                         '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+you.avatar+'" /></div>' +
@@ -59,7 +72,8 @@ $(".mytext").on("keyup", function(e){
         if (text !== ""){
             insertChat("me", text);
             $(this).val('');
-            $.get("message/"+encodeURI(text), function(data, status){
+            uuid = localStorage.getItem("uuid");
+            $.get("message/"+encodeURI(text)+"/"+uuid, function(data, status){
               if (!data.message){
                 data.message = "No worries! you'll have it"
               }

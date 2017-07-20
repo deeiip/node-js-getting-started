@@ -5,7 +5,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/message/:text', function(request, response) {
+app.get('/message/:text/:uuid', function(request, response) {
   // response.render('pages/index');
   var http = require("https");
 
@@ -35,7 +35,7 @@ app.get('/message/:text', function(request, response) {
     });
   });
   console.log(request.params.text)
-  req.write(JSON.stringify({ message: request.params.text }));
+  req.write(JSON.stringify({ message: request.params.text, uuid: request.params.uuid }));
   req.end();
 });
 
